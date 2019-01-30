@@ -112,20 +112,22 @@ public class SortTools {
 	 */
 	public static int insertInPlace(int[] x, int n, int v){
 		//doesn't actually change x rn?
+		//try to copy x to temp at start, then modify x from temp one at a time
+		//try reinitializing x?
 		boolean flag = false;
 		int[] temp = Arrays.copyOf(x, n+1);
 		for(int i = 1; i < n; i++) {
 			//if value found, just return n and don't modify x
-			if(x[i] == v) {
+			if(temp[i] == v) {
 				return n;
 			}
 			if(!flag)
 			{
 				// keep same as long as value isnt missing
-				if(x[i] > v && x[i-1] < v)
+				if(temp[i] > v && temp[i-1] < v)
 				{
 					//if value missing, set flag to true and temp i to value
-					temp[i] = v;
+					x[i] = v;
 					flag = true;
 					
 				}
@@ -133,10 +135,9 @@ public class SortTools {
 			if(flag)
 			{
 				//once missing, increment by one
-				temp[i+1] = x[i];
+				x[i+1] = temp[i];
 			}
 		}
-		x = temp;
 		return n+1;
     }
 
