@@ -73,6 +73,9 @@ public class SortTools {
 		int[] temp = new int[len+1];
 		//flag indicates value was inserted.
 		boolean flag = false;
+		if(len == 0) {
+			return new int[] {};
+		}
 		for(int i = 0; i < len ; i++) {
 			if(!flag) {
 				//if val not placed yet, continue normally

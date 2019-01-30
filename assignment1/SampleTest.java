@@ -9,6 +9,12 @@ import org.junit.Test;
 public class SampleTest {
 	
 	@Test(timeout = 2000)
+	public void IsSortedZero(){
+		int[] x = new int[]{-2, -1, 0, 1, 2, 3};
+		assertEquals(false, SortTools.isSorted(x, 0));
+	}
+	
+	@Test(timeout = 2000)
 	public void testFindFoundFull(){
 		int[] x = new int[]{-2, -1, 0, 1, 2, 3};
 		assertEquals(3, SortTools.find(x, 6, 1));
@@ -39,4 +45,17 @@ public class SampleTest {
 		int[] expected = new int[]{10, 20, 30, 35, 40};
 		assertArrayEquals(expected, SortTools.insertGeneral(x, 5, 35));
 	}
+	@Test(timeout = 2000)
+	public void testInsertGeneralfirst(){
+		int[] x = new int[]{10, 20, 30, 35, 40, 50};
+		int[] expected = new int[]{0,10, 20, 30, 35};
+		assertArrayEquals(expected, SortTools.insertGeneral(x, 4, 0));
+	}
+	@Test(timeout = 2000)
+	public void testInsertGeneralzero(){
+		int[] x = new int[]{1, 2, 23 ,54 ,68};
+		int[] expected = new int[]{};
+		assertArrayEquals(expected, SortTools.insertGeneral(x, 0, 20));
+	}
+	
 }
