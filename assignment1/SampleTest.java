@@ -57,5 +57,12 @@ public class SampleTest {
 		int[] expected = new int[]{};
 		assertArrayEquals(expected, SortTools.insertGeneral(x, 0, 20));
 	}
+	@Test(timeout = 2000)
+	public void testInsertPlaceMiddle(){
+		int[] x = new int[]{1, 2, 23 ,54 ,68};
+		int[] expected = new int[]{1, 2, 3, 23, 54, 68};
+		assertEquals(6, SortTools.insertInPlace(x, 5, 3));
+		assertArrayEquals(x, expected);
+	}
 	
 }
