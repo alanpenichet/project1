@@ -9,6 +9,9 @@
  */
 
 package assignment1;
+
+import java.util.Arrays;
+
 public class SortTools {
 	/**
 	  * This method tests to see if the given array is sorted.
@@ -38,27 +41,25 @@ public class SortTools {
 	public static int find(int[] x, int n, int v) {
 		int left  = 0;
 		int right = n-1;
-		if(v == x[right])
-		{
-			return right;
-		}
-		while(v < x[right]) 
-		{
-			int pivot = right/2;
-			if(v == x[pivot])
-			{
-				return pivot;
+		while(left <= right) {
+			int middle = (left+right)/2;
+			if(left == right) {
+				if(x[middle]!=v) {
+					return -1;
+				}
 			}
-			else if(v < x[pivot])
-			{
-				right = pivot;
+			if(x[middle] == v) {
+				return middle;
 			}
-			else
-			{
-				left = pivot;
+			if(x[middle] > v) {
+				right = middle;
+			}
+			if(x[middle] < v) {
+				left = middle;
 			}
 		}
-        return -1;
+		return -1;
+	
     }
 
 	/**
@@ -68,10 +69,35 @@ public class SortTools {
 	 * @param v is the value to be added to the new array
 	 * @return a new array containing the first n elements of x, and v
 	 */
-	public static int[] insertGeneral(int[] x, int n, int v){
-		// stub only, you write this!
-		// TODO: complete it
-        return null;
+	public static int[] insertGeneral(int[] orig, int len, int val){
+		int[] temp = new int[len+1];
+		//flag indicates value was inserted.
+		boolean flag = false;
+		for(int i = 0; i < len ; i++) {
+			if(!flag) {
+				//if val not placed yet, continue normally
+				if(orig[i] < val) {
+					temp[i] = orig[i];
+					//if still not found and at end, append.
+					if(i == len-1) {
+						temp[i+1] = val;
+					}
+				}
+				if(orig[i] == val) {
+					//if value found, return truncated array.
+					return Arrays.copyOf(orig, len);
+				}
+				if(orig[i] > val) {
+					temp [i] = val;
+					flag = true;
+				}
+			}
+			//if val found, offset by one.
+			if(flag) {
+				temp[i+1] = orig[i];
+			}
+		}
+        return temp;
     }
 
 	/**
@@ -82,9 +108,7 @@ public class SortTools {
 	 * @return n if v is already in x, otherwise returns n+1
 	 */
 	public static int insertInPlace(int[] x, int n, int v){
-		// stub only, you write this!
-		// TODO: complete it
-        return -1;
+		return 0;
     }
 
 	/**
