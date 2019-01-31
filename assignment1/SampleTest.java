@@ -16,6 +16,11 @@ public class SampleTest {
 		int[] x = new int[]{-2, -1, 0, 1, 2, 3};
 		assertEquals(false, SortTools.isSorted(x, 0));
 	}
+	@Test(timeout = 2000)
+	public void IsSortedOne(){
+		int[] x = new int[]{-2};
+		assertEquals(true, SortTools.isSorted(x, 1));
+	}
 	
 	@Test(timeout = 2000)
 	public void testFindFoundFull(){
@@ -125,6 +130,7 @@ public class SampleTest {
 		x[(length/2)+1] = temp;
 		SortTools.insertSort(x, length);
 		assertArrayEquals(expected, x);
+		assertEquals(true, SortTools.isSorted(x, length));
 	}
 	@Test(timeout = 2000)
 	public void testInsertSortOne(){
